@@ -1,6 +1,5 @@
 "use strict";
-
-const UserStorage = require("../../models/UserStorage")
+const User = require("../../models/User");
 
 const output = {
   home: (req,res) => {
@@ -13,22 +12,10 @@ const output = {
 
 const process = {
   login: (req,res) => {
-    const id = req.body.id,
-          pwd = req.body.pwd;
-
-    const users = UserStorage.getUsers("id", "pwd");
-  
-    const response = {};
-    if (users.id.includes(id)) {
-      const idx = users.id.indexOf(id);
-      if (users.pwd[idx] === pwd) {
-        response.success = true;
-        return res.json(response);
-      }
-    }
-    response.success = false;
-    response.msg = "로그인에 실패하셨습니다.";
-    return res.json(response)
+    const user = new User(req.body);
+    const response = user.login(); // 유저가 로그인하면 응답받음
+    console.log(response)
+    return res.json(response);
   }
 }
 
@@ -36,3 +23,8 @@ module.exports = {
   output,
   process
 }
+
+// 객체지향 프로그래밍 | 인스턴스화
+// const user = new(user(req.body)); 사용자가 전달한 데이터를 가지고 있는 객체를 하나 만든다.
+// const response = user.login(); 객체가 로그인을 하면 응답을 받고
+// return res.json(response); 처리
