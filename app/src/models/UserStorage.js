@@ -6,6 +6,7 @@ class UserStorage {
     pwd: ["123", "1234", "12345"],
     name: ["김", "이", "최"]
   };
+  
   // 데이터 은닉화하고 메서드로 전달
   static getUsers(...fields) {
     const users = this.#users;

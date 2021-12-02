@@ -10,6 +10,8 @@ const output = {
   }
 }
 
+// 로그인 요청 왔을 때
+// 인증 & 결과 응답
 const process = {
   login: (req,res) => {
     const user = new User(req.body);
