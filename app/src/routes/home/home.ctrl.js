@@ -21,6 +21,12 @@ const process = {
     const response = user.login(); // 유저가 로그인하면 응답받음
     console.log(response)
     return res.json(response);
+  },
+  register: (req,res) => {
+    const user = new User(req.body);
+    const response = user.register(); // 유저가 로그인하면 응답받음
+    console.log(response)
+    return res.json(response);
   }
 }
 
